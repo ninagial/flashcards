@@ -30,7 +30,7 @@ def practice_deck(deck=japanese, reverse=False, shuffle=False, max_trials = 3, r
         trials += 1
         inp = input()
     return {'trials': trials, 'correct':correct, 'score': correct/trials, 'revision' : revision_deck}
-        
-try0 = practice_deck() 
+
+try0 = practice_deck(counters) 
 print("This trial's score: %.2f%%\n" % try0['score'])
 print(revision)

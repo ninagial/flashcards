@@ -1,9 +1,12 @@
 class Pair(object):
-    def __init__(self, a, b):
+    def __init__(self, a, b, tags=[]):
         self.a = a
         self.b = b
+        self.tags = tags
     def __str__(self):
         return "%s -> %s" % (self.a,self.b)
+    def tag(self, tag):
+        self.tags.append(tag)
 
 class Deck(object):
     def __init__(self, name="", items=[]):
@@ -22,3 +25,11 @@ class Deck(object):
         return self.items.pop()
     def swap(self):
         self.items = [Pair(x.b,x.a) for x in self.items]
+    def filter_tags(self, tags):
+        out = []
+        for pair in self.items:
+            if pair.tags != []:
+                for tag in pair.tags:
+                    if tag in tags:
+                        out.append(pair)
+        return out
