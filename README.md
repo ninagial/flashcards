@@ -34,6 +34,7 @@ In the file `script.py` you can select some variations of the same theme:
 It is not necessary to use _semantic_ tags. For instance `lesson 1` might come in handy, if you jsut want to organize the subject matter to more manageable sections.
 
 Consult the code in `matter.py` for an example. This line however does that quickly, if you are font of [list comprehension](https://www.w3schools.com/python/python_lists_comprehension.asp)
+
 	numbers = Deck('Numbers', items = [Pair(pair.a, pair.b, tags=['numbers']) for pair in japanese.items if pair.a in ('one', 'two')])
 
 Either way, when you have a Deck with tagged items, you can use:
