@@ -28,7 +28,7 @@ class Deck(object):
     def pop_item(self):
         return self.items.pop()
     def swap(self):
-        self.items = [Pair(x.b,x.a) for x in self.items]
+        return Deck(name=self.name+'_reversed', items=[Pair(x.b,x.a) for x in self.items])
     def filter_tags(self, tags):
         out = []
         for pair in self.items:
