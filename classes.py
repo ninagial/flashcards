@@ -33,3 +33,9 @@ class Deck(object):
                     if tag in tags:
                         out.append(pair)
         return out
+    def subset(self, n):
+        return Deck(self.name=str(n), items=self.items[:(n-1)])
+    def lookup(self, term):
+        for pair in self.items:
+            if term in pair.b:
+                return str(pair)
