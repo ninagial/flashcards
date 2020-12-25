@@ -43,4 +43,17 @@ Either way, when you have a Deck with tagged items, you can use:
 	
 In order to use this as the practice deck, change line 34 in `script.py` to:
 
-	try0 = practice_deck(counters) 
+	try0 = counters.practice() 
+	
+# Look up
+
+For this you have to start a python REPL, ie it is only usable in the command line.
+
+	python
+	from classes import *
+	from matter import *
+	
+	# how you say 'unification' in Japanese??
+	japanese.lookup('unification')
+
+
