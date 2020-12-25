@@ -25,3 +25,7 @@ numbers = Deck('Japanese',
 # Subset this, if you only need the counters
 
 counters = Deck('Counters', items = numbers.filter_tags('counters'))
+
+japanese_short = japanese.subset(3)
+japanese_short = japanese_short.shuffle()
+

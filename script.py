@@ -33,4 +33,6 @@ def practice_deck(deck=japanese, reverse=False, shuffle=False, max_trials = 3, r
 
 try0 = practice_deck(counters) 
 print("This trial's score: %.2f%%\n" % try0['score'])
+print(japanese_short)
 print(revision)
+print("LOOK UP results:\n %s" % japanese.lookup('one thing'))
