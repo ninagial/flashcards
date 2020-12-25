@@ -1,4 +1,5 @@
 from random import shuffle
+import copy
 
 class Pair(object):
     def __init__(self, a, b, tags=[]):
@@ -46,3 +47,36 @@ class Deck(object):
         if len(out) == 1:
             return out[0]
         return ';'.join(out)
+    def practice(self, subset=False, reverse=False, shuffle=False, max_trials = 3):
+        current_deck = copy.deepcopy(self)
+        revision = Deck(name='revision', items=[])
+
+        if shuffle:
+            current_deck = current_deck.shuffle()
+        if subset:
+            current_deck = current_deck.subset(subset)
+        if reverse:
+            current_deck = current_deck.swap()
+
+        inp = ''
+        trials = 0
+        correct = 0
+
+        while (inp != 'q'):
+            if trials > max_trials:
+                break
+            if len(current_deck.items) < 1:
+                break
+            current = current_deck.pop_item()
+            print(">>%s\n?>\n" % current.a)
+            response = input()
+            if response != current.b:
+                print("NO! It is: %s" % current.b)
+                revision.new(current)
+                print("Item added to Revision List.")
+            else:
+                correct += 1
+                print('YES!')
+            trials += 1
+            inp = input()
+        return {'trials': trials, 'correct':correct, 'score': 100*correct/trials, 'revision' : revision}
