@@ -1,3 +1,5 @@
+from random import shuffle
+
 class Pair(object):
     def __init__(self, a, b, tags=[]):
         self.a = a
@@ -20,7 +22,9 @@ class Deck(object):
     def new(self, i):
         self.items.append(i)
     def shuffle(self):
-        shuffle(self.items)
+        items_out = self.items
+        shuffle(items_out)
+        return Deck(name=self.name+'shuffled', items=items_out)
     def pop_item(self):
         return self.items.pop()
     def swap(self):
@@ -34,8 +38,11 @@ class Deck(object):
                         out.append(pair)
         return out
     def subset(self, n):
-        return Deck(self.name=str(n), items=self.items[:(n-1)])
+        return Deck(name=self.name+str(n), items=self.items[:(n-1)])
     def lookup(self, term):
-        for pair in self.items:
-            if term in pair.b:
-                return str(pair)
+        out = [str(p) for p in self.items if term in p.a]
+        if len(out) == 0:
+            return 'No matching items'
+        if len(out) == 1:
+            return out[0]
+        return ';'.join(out)
