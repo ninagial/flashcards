@@ -51,10 +51,10 @@ class Deck(object):
         current_deck = copy.deepcopy(self)
         revision = Deck(name='revision', items=[])
 
-        if shuffle:
-            current_deck = current_deck.shuffle()
         if subset:
             current_deck = current_deck.subset(subset)
+        if shuffle:
+            current_deck = current_deck.shuffle()
         if reverse:
             current_deck = current_deck.swap()
 
