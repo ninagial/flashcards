@@ -20,6 +20,8 @@ class Deck(object):
             return "Deck: %s\n%s\n" % (self.name, "\n".join([str(i) for i in self.items ]))
         else:
             return "Deck: %s\nThere is nothing here!\n" % self.name
+    def empty(self):
+        return self.items == []
     def new(self, i):
         self.items.append(i)
     def shuffle(self):
