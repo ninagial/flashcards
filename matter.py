@@ -24,9 +24,9 @@ decks = {
 
     # Append more decks here (python dictionary elements)
     # ...................................................
-    "placeholder" = Deck("Deck Name", items = [])
+    "placeholder" : Deck("Deck Name", items = [])
 } # end of decks dictionary
 
 # Example:
 # Subset a deck by tags, and add it to the dictionary
-decks["counters"] : Deck('Counters', items = decks["numbers"].filter_tags('counters')),
+decks["counters"] : Deck('Counters', items = decks["numbers"].filter_tags('counters'))
