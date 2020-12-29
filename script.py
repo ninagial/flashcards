@@ -10,12 +10,12 @@ parser.add_argument("--nitems", "-n", help="number of items to practice", type=i
 parser.add_argument("--lookupdeck", "-ld", help="deck to be used as lookup (must exist)")
 parser.add_argument("--shuffle", action='store_true', help="shuffle the deck")
 parser.add_argument("--reverse", action='store_true', help="swap the deck (terms become definitions and vice versa")
-parser.add_argument("--start", help="number of item to start at")
+parser.add_argument("--start", nargs="?", type=int, const=0, help="number of item to start at")
 args = parser.parse_args()
 if args.lookupdeck != None:
-    try0 = decks[args.deck].practice(subset=args.nitems, reverse=args.reverse, shuffle=args.shuffle, lookup_deck=decks[args.lookupdeck])
+    try0 = decks[args.deck].practice(subset=args.nitems, reverse=args.reverse, shuffle=args.shuffle, lookup_deck=decks[args.lookupdeck], start=args.start)
 else:
-    try0 = decks[args.deck].practice(subset=args.nitems, reverse=args.reverse, shuffle=args.shuffle)
+    try0 = decks[args.deck].practice(subset=args.nitems, reverse=args.reverse, shuffle=args.shuffle, start=args.start)
 print("This trial's score: %.2f%%\n" % try0['score'])
 print(try0['revision'])
 

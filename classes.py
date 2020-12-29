@@ -40,8 +40,10 @@ class Deck(object):
                     if tag in tags:
                         out.append(pair)
         return out
-    def subset(self, n, start=0):
-        return Deck(name=self.name+str(n), items=self.items[start:(n-1)])
+    def subset(self, n, start=None):
+        if start==None:
+            start=0
+        return Deck(name=self.name+str(n), items=self.items[start:(start+n)-1])
     def lookup(self, term):
         out = [str(p) for p in self.items if term in p.a]
         if len(out) == 0:
@@ -53,10 +55,7 @@ class Deck(object):
         current_deck = copy.deepcopy(self)
         revision = Deck(name='revision', items=[])
         if subset:
-            if start != None:
-                current_deck = current_deck.subset(subset, start)
-            else:
-                current_deck = current_deck.subset(subset)
+            current_deck = current_deck.subset(subset, start)
         if shuffle:
             current_deck = current_deck.shuffle()
         if reverse:
@@ -69,16 +68,19 @@ class Deck(object):
         correct = 0
 
         while (inp != 'q'):
+            this = None
             if len(current_deck.items) < 1:
                 break
             current = current_deck.pop_item()
             print(">>%s\n?>\n" % current.a)
             response = input()
             if response != current.b:
+                this = False
                 print("NO! It is: %s" % current.b)
                 revision.new(current)
                 print("Item added to Revision List.")
             else:
+                this = True
                 correct += 1
                 print('YES!')
             trials += 1
@@ -90,4 +92,11 @@ class Deck(object):
                     print(">> LOOKUP RESULT in %s: " % self.name, self.lookup(current.a))
                 else:
                     print(">> LOOKUP RESULT in %s: " % lookup_deck.name, lookup_deck.lookup(current.a))
+            if inp =="x":
+                if not this:
+                    revision.pop_item()
+                else:
+                    print("I don't wanna.")
+            if inp == "q":
+                break
         return {'trials': trials, 'correct':correct, 'score': 100*correct/trials, 'revision' : revision}
