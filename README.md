@@ -12,7 +12,7 @@ Then:
 
 `python script.py --deck="japanese" --nitems=3`
 
-`python script.py --deck="japanese --nitems=3 --shuffle"`
+`python script.py --deck="japanese" --nitems=3 --shuffle`
 
 `python script.py --deck="japanese" --reverse`
 
@@ -69,7 +69,7 @@ Modify this in order to add your own learning material.
 
 `Pair('January', 'itsigatsu', tags = ['months'])`
 
-It is not necessary to use _semantic_ tags. For instance `lesson 1` might come in handy, if you jsut want to organize the subject matter to more manageable sections.
+It is not necessary to use _semantic_ tags. For instance `lesson 1` might come in handy, if you just want to organize the subject matter to more manageable sections.
 
 Consult the code in `matter.py` for an example. This line however does that quickly, if you are font of [list comprehension](https://www.w3schools.com/python/python_lists_comprehension.asp)
 
