@@ -40,8 +40,8 @@ class Deck(object):
                     if tag in tags:
                         out.append(pair)
         return out
-    def subset(self, n):
-        return Deck(name=self.name+str(n), items=self.items[:(n-1)])
+    def subset(self, n, start=0):
+        return Deck(name=self.name+str(n), items=self.items[start:(n-1)])
     def lookup(self, term):
         out = [str(p) for p in self.items if term in p.a]
         if len(out) == 0:
@@ -49,24 +49,26 @@ class Deck(object):
         if len(out) == 1:
             return out[0]
         return ';'.join(out)
-    def practice(self, subset=False, reverse=False, shuffle=False, max_trials = 3):
+    def practice(self, subset=False, reverse=False, shuffle=False, lookup_deck=None, start=None):
         current_deck = copy.deepcopy(self)
         revision = Deck(name='revision', items=[])
-
         if subset:
-            current_deck = current_deck.subset(subset)
+            if start != None:
+                current_deck = current_deck.subset(subset, start)
+            else:
+                current_deck = current_deck.subset(subset)
         if shuffle:
             current_deck = current_deck.shuffle()
         if reverse:
             current_deck = current_deck.swap()
+            if lookup_deck != None:
+                lookup_deck = lookup_deck.swap()
 
         inp = ''
         trials = 0
         correct = 0
 
         while (inp != 'q'):
-            if trials > max_trials:
-                break
             if len(current_deck.items) < 1:
                 break
             current = current_deck.pop_item()
@@ -80,5 +82,12 @@ class Deck(object):
                 correct += 1
                 print('YES!')
             trials += 1
+            # things to do after trial
+            print("Enter command or hit Return to continue...\n")
             inp = input()
+            if inp == "l":
+                if lookup_deck == None:
+                    print(">> LOOKUP RESULT in %s: " % self.name, self.lookup(current.a))
+                else:
+                    print(">> LOOKUP RESULT in %s: " % lookup_deck.name, lookup_deck.lookup(current.a))
         return {'trials': trials, 'correct':correct, 'score': 100*correct/trials, 'revision' : revision}

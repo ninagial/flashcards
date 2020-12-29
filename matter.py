@@ -13,7 +13,7 @@ decks = {
                 ]),
 
 
-    "numbers" : Deck('Japanese', 
+    "numbers" : Deck('Numbers', 
     # Construct a tagged deck - Method 1
             [
                 Pair('one', 'ichi', tags=['numbers']),
