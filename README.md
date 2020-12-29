@@ -30,7 +30,7 @@ This will start on the fourth item and use another three items afer that. You ca
 
 Pressing `l` (as in Lama) when prompted after each trial will look up the current term in the current Deck. However, you may want to look it up in another deck. Specify this as follows:
 
-`python script.py --deck="numbers" --lookupdec="japanese"`
+`python script.py --deck="numbers" --lookupdeck="japanese"`
 
 Or equivalently:
 
@@ -39,7 +39,9 @@ Or equivalently:
 # After trial commands
 
 `l` will look up the current term in the Lookup Deck.
+
 `x` will only work after a failed trial, and remove the last term entered in the Revision Deck (eg when the trial failed because of a typo or sth).
+
 `q` will quit the current Deck.
 	
 ## Other Options
@@ -77,10 +79,8 @@ Either way, when you have a Deck with tagged items, you can use:
 
 	decks["counters"] = Deck('Counters', items = decks["numbers"].filter_tags('counters'))
 	
-In order to use this as the practice deck, change line 34 in `script.py` to:
+Then use `python script.py -d="counters"` as expected.
 
-	try0 = counters.practice() 
-	
 # Look up terms when not practicing
 
 For this you have to start a python REPL, ie it is only usable in the command line.
