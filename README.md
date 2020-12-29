@@ -9,16 +9,46 @@ Clone the repository and navigate into the directory.
 Then:
 
 `python script.py --deck="japanese"`
+
 `python script.py --deck="japanese" --nitems=3`
+
 `python script.py --deck="japanese --nitems=3 --shuffle"`
+
 `python script.py --deck="japanese" --reverse`
+
+# Omitting early entries
+
+You'll probably find yourself reviewing time and again the early stuff when you want to move on to new material. To ignore earlier entries, do this:
+
+
+`python script.py --deck="japanese" --start=3 --nitems=3`
+
+This will start on the fourth item and use another three items afer that. You can combine this with the other flags.
+
+
+# Specifying a separate lookup Deck
+
+Pressing `l` (as in Lama) when prompted after each trial will look up the current term in the current Deck. However, you may want to look it up in another deck. Specify this as follows:
+
+`python script.py --deck="numbers" --lookupdec="japanese"`
+
+Or equivalently:
+
+`python script.py --d="numbers" --ld="japanese"`
+
+# After trial commands
+
+`l` will look up the current term in the Lookup Deck.
+`x` will only work after a failed trial, and remove the last term entered in the Revision Deck (eg when the trial failed because of a typo or sth).
+`q` will quit the current Deck.
 	
-## Options
+## Other Options
 
 Adding `--reverse` will present the words the other way round.
+
 Adding `--shuffle` will present the words in random order.
-`--deck="something"` select an existing deck defined in `matter.py`.
-`--nitems` will use a subset of the deck, of the given length
+
+
 
 # Adding your own material
 
@@ -51,7 +81,7 @@ In order to use this as the practice deck, change line 34 in `script.py` to:
 
 	try0 = counters.practice() 
 	
-# Look up
+# Look up terms when not practicing
 
 For this you have to start a python REPL, ie it is only usable in the command line.
 
